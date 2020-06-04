@@ -9,15 +9,18 @@ from core import models
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
     list_display = ['email', 'name']
-    fieldsets = [
+    fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal info'), {'fields': ('name',)}),
-        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser')}),
-        (_('Important dates'), {'fields': ('last_login', 'last_',)}),
-    ]
-
+        (_('Personal Info'), {'fields': ('name',)}),
+        (
+            _('Permissions'),
+            {'fields': ('is_active', 'is_staff', 'is_superuser')}
+        ),
+        (_('Important dates'), {'fields': ('last_login',)})
+    )
     add_fieldsets = (
-        (None, {'classes': ('wide',),
-                'fields': ('email', 'password1', 'password2')
-                })
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'password1', 'password2')
+        }),
     )
